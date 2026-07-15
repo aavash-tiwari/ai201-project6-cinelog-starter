@@ -62,7 +62,15 @@
 
 
 
-\## PR Description
+## PR Description
+This PR introduces the core Watchlist feature, allowing users to queue films they plan to watch. It includes logic for adding to the watchlist, robust deduplication checks to prevent double-entries, and full Pytest coverage for edge cases (like nonexistent film IDs). Default visibility is set to public to encourage social discovery, and the queue sorts by date-added to optimize for finding a movie to watch tonight.
 
-\*\*This PR introduces the core Watchlist feature, allowing users to queue films they plan to watch. It includes logic for adding to the watchlist, robust deduplication checks to prevent double-entries, and full Pytest coverage for edge cases (like nonexistent film IDs). Default visibility is set to public to encourage social discovery, and the queue sorts by date-added to optimize for finding a movie to watch tonight.\*\*
+**Manual Testing Steps:**
+1. Boot up the app and navigate to a specific film page.
+2. Click the new "Add to Watchlist" button.
+3. Verify the film appears in your user profile under the Watchlist tab.
+4. Attempt to add the exact same film again and verify the UI catches the error and prevents a duplicate entry.
+5. Check the Watchlist tab to ensure newer additions appear at the top (date-added sorting).
 
+**Git Log Screenshot:**
+![Git Log Screenshot](git-log.png)

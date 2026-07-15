@@ -24,35 +24,24 @@ class NotInCollectionError(Exception):
     pass
 
 
-def add_to_collection(user_id, film_id, rating=None):
+def add_to_watchlist(user_id, film_id):
     """
-    Add a film to a user's collection (i.e., mark it as watched).
-
-    Args:
-        user_id (str): UUID of the user.
-        film_id (str): UUID of the film.
-        rating (int, optional): Rating from 1–5. May be added later.
-
-    Returns:
-        CollectionEntry: The newly created entry.
-
-    Raises:
-        FilmNotFoundError: If film_id does not exist.
-        AlreadyInCollectionError: If the film is already in the user's collection.
+    Add a film to a user's watchlist.
     """
+    # Check if the film exists first
     film = db.session.get(Film, film_id)
     if film is None:
-        raise FilmNotFoundError(f"No film found with id '{film_id}'")
+        raise ValueError(f"No film found with id '{film_id}'")
 
-    existing = CollectionEntry.query.filter_by(
+    # Deduplication check (Comment 2)
+    existing = WatchlistEntry.query.filter_by(
         user_id=user_id, film_id=film_id
     ).first()
     if existing:
-        raise AlreadyInCollectionError(
-            f"Film '{film_id}' is already in this user's collection"
-        )
+        raise ValueError(f"Film '{film_id}' is already in this user's watchlist")
 
-    entry = CollectionEntry(user_id=user_id, film_id=film_id, rating=rating)
+    # Add the new entry
+    entry = WatchlistEntry(user_id=user_id, film_id=film_id)
     db.session.add(entry)
     db.session.commit()
     return entry

@@ -18,9 +18,9 @@
 
 \## Comment 2 — Deduplication
 
-\*\*What I did:\*\*
+\*\*What I did: I added a deduplication check at the top of `add_to_watchlist`. It queries `WatchlistEntry` using the `user_id` and `film_id`. If a duplicate is detected, it raises an error, stopping the function from inserting a second identical record.\*\*
 
-\*\*How I verified:\*\*
+\*\*How I verified: I directly referenced the existing `add_to_collection()` pattern in `services/collection_service.py` to ensure my implementation mirrored how the codebase currently handles this exact edge case.\*\*
 
 
 

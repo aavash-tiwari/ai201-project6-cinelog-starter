@@ -34,21 +34,21 @@
 
 \## Comment 4 — Default visibility
 
-\*\*My position:\*\*
+\*\*My position: I chose to set the default visibility to `public=True`.\*\*
 
-\*\*Reasoning:\*\*
+\*\*Reasoning: CineLog is fundamentally a community film tracking app. Defaulting watchlists to public optimizes for social discovery, removing friction for users who want to share their tastes and see what their friends are planning to watch.\*\*
 
-\*\*Tradeoff acknowledged:\*\*
+\*\*Tradeoff acknowledged: The alternative (defaulting to private) would optimize for strict user privacy, ensuring no one feels judged for their watch-habits. However, in the context of a community-driven platform, forcing users to manually opt-in to sharing creates too much friction and hurts the core discovery loop.\*\*
 
 
 
 \## Comment 5 — Sort order
 
-\*\*My position:\*\*
+\*\*My position: I agree with changing the sort order to date-added (newest first).\*\*
 
-\*\*Reasoning:\*\*
+\*\*Reasoning: A watchlist is a dynamic behavioral backlog, not a static reference library. When users check their watchlist, they are usually trying to answer "what should I watch tonight?", making the films they most recently heard about and added the highest priority.\*\*
 
-\*\*Engagement with reviewer's point:\*\*
+\*\*Engagement with reviewer's point: I agree entirely with @dev-lead. While alphabetical sorting is cleaner for a massive, permanent collection, it fails to support the active, time-sensitive way users interact with a queue of upcoming films. Date-added solves this.\*\*
 
 
 

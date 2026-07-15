@@ -4,7 +4,7 @@
 
 \## AI Usage
 
-<!-- Fill in at the end — how you used AI tools during this project -->
+\*\*I used an AI assistant to help troubleshoot Pytest fixture errors, resolve a tricky Git rebase conflict involving `.gitignore` and missing database models, and format standard markdown documentation for this PR.\*\*
 
 
 
@@ -54,15 +54,15 @@
 
 \## Comment 6 — Rebase
 
-\*\*What conflicted:\*\*
+\*\*What conflicted: There were conflicts in `.gitignore` and `models.py`. The `main` branch updated the database models to use UUIDs instead of integers, which accidentally overwrote my `WatchlistEntry` model during the rebase.\*\*
 
-\*\*How I resolved it:\*\*
+\*\*How I resolved it: I resolved the `.gitignore` duplicate lines and manually restored the `WatchlistEntry` model into `models.py`, ensuring its IDs were updated to match the new `db.String(36)` UUID format from the `main` branch.\*\*
 
-\*\*How I verified no conflict remains:\*\*
+\*\*How I verified no conflict remains: I ran `pytest tests/test_watchlist.py -v` to confirm the restored model works perfectly with the new UUID format and all tests pass.\*\*
 
 
 
 \## PR Description
 
-<!-- Written at the end — feature overview, design decisions, manual testing steps -->
+\*\*This PR introduces the core Watchlist feature, allowing users to queue films they plan to watch. It includes logic for adding to the watchlist, robust deduplication checks to prevent double-entries, and full Pytest coverage for edge cases (like nonexistent film IDs). Default visibility is set to public to encourage social discovery, and the queue sorts by date-added to optimize for finding a movie to watch tonight.\*\*
 

@@ -23,10 +23,27 @@ def add_to_watchlist(user_id, film_id):
     Raises:
         FilmNotFoundError: If film_id does not exist.
     """
+    from app import db
+from models import Film, WatchlistEntry
+from services.collection_service import FilmNotFoundError
+
+def add_to_watchlist(user_id, film_id):
+    """
+    Add a film to a user's watchlist.
+    """
+    # Check if the film exists first
     film = db.session.get(Film, film_id)
     if film is None:
         raise FilmNotFoundError(f"No film found with id '{film_id}'")
 
+    # Deduplication check
+    existing = WatchlistEntry.query.filter_by(
+        user_id=user_id, film_id=film_id
+    ).first()
+    if existing:
+        raise ValueError(f"Film '{film_id}' is already in this user's watchlist")
+
+    # Add the new entry
     entry = WatchlistEntry(user_id=user_id, film_id=film_id)
     db.session.add(entry)
     db.session.commit()

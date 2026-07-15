@@ -26,9 +26,9 @@
 
 \## Comment 3 — Missing test
 
-\*\*What I did:\*\*
+\*\*What I did: I created a new file `tests/test_watchlist.py` and wrote a test that passes a fake UUID to `add_to_watchlist` to verify it correctly raises a `FilmNotFoundError`.\*\*
 
-\*\*How I verified:\*\*
+\*\*How I verified: I modeled this test directly after `test_add_to_collection_nonexistent_film_raises` from the existing `tests/test_collection.py` file to ensure it targets the correct edge case.\*\*
 
 
 

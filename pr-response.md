@@ -60,7 +60,12 @@
 
 \*\*How I verified no conflict remains: I ran `pytest tests/test_watchlist.py -v` to confirm the restored model works perfectly with the new UUID format and all tests pass.\*\*
 
+## Stretch Features Completed
+**1. remove_from_watchlist():** I implemented this in `services/watchlist_service.py`. It mirrors the existing `remove_from_collection()` pattern by querying for the specific user/film pair and deleting it. If the film isn't found, it safely raises a `ValueError` rather than breaking the database. 
 
+**2. Second Test:** I added `test_remove_nonexistent_film_raises` in the testing suite. This covers the edge case where a user tries to delete a film that doesn't exist in their watchlist. I chose this specific edge case because "silent failures" during deletion are a common source of bugs.
+
+**3. Visibility Toggle Endpoint:** I updated the `WatchlistEntry` model with a `public` boolean column (defaulting to `True`) and added the core logic to toggle it. A front-end caller would use this by sending a `PATCH` request with a JSON payload containing `{"public": false}` to update a user's privacy preference for a specific film.
 
 ## PR Description
 This PR introduces the core Watchlist feature, allowing users to queue films they plan to watch. It includes logic for adding to the watchlist, robust deduplication checks to prevent double-entries, and full Pytest coverage for edge cases (like nonexistent film IDs). Default visibility is set to public to encourage social discovery, and the queue sorts by date-added to optimize for finding a movie to watch tonight.
